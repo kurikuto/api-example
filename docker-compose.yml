@@ -9,3 +9,11 @@ services:
     ports:
       - 8000:8000  # ホストマシンのポート8000を、docker内のポート8000に接続する
     tty: true
+  db:
+    image: postgres:16-bookworm
+    environment:
+      POSTGRES_PASSWORD: example
+      TZ: 'Asia/Tokyo'
+    ports: 
+      - 5432:5432
+  

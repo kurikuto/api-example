@@ -5,6 +5,7 @@ WORKDIR /src
 
 # poetryをインストール
 RUN apt update \
+    && apt -y install libpq-dev gcc \
     && pip install --upgrade pip \
     && pip install poetry
 
