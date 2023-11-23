@@ -24,7 +24,7 @@ async def create_task(
     db: AsyncSession, task_create: task_schema.TaskCreate
 ) -> task_model.Task:
     """新規タスクを作成する"""
-    task = task_model.Task(**task_create.dict())
+    task = task_model.Task(**task_create.model_dump())
     db.add(task)
     await db.commit()
     await db.refresh(task)

@@ -17,7 +17,7 @@ async def list_tasks(db: AsyncSession = Depends(get_db)):
 async def create_task(
     task_body: task_schema.TaskCreate, db: AsyncSession = Depends(get_db)
 ):
-    # return task_schema.TaskCreateResponse(id=1, **task_body.dict())
+    # return task_schema.TaskCreateResponse(id=1, **task_body.model_dump())
     return await task_crud.create_task(db, task_body)
 
 
@@ -25,7 +25,7 @@ async def create_task(
 async def update_task(
     task_id: int, task_body: task_schema.TaskCreate, db: AsyncSession = Depends(get_db)
 ):
-    # return TaskCreateResponse(id=task_id, **task_body.dict())
+    # return TaskCreateResponse(id=task_id, **task_body.model_dump())
     task = await task_crud.get_task(db, task_id=task_id)
     if task is None:
         raise HTTPException(status_code=404, detail="task not found")
